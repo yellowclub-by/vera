@@ -1,5 +1,5 @@
 import asyncio
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher
 
 TOKEN = '7192849705:AAFCoJJGa8wYWW18HN6tb0AQSgBq2KA0SQc'
 
