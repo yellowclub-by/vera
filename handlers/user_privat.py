@@ -1,18 +1,19 @@
 from aiogram import types, Router, F
 from aiogram.filters import CommandStart, Command
+from keyboards import reply
 
 user_router = Router()
 
 
 @user_router.message(CommandStart())
 async def start(message: types.Message):
-    await message.answer('Hello.')
+    await message.answer('Hello.', reply_markup=reply.start_kb)
 
 
 @user_router.message(F.text.lower() == 'catalog')
 @user_router.message(Command('catalog'))
 async def catalog(message: types.Message):
-    await message.answer("Here's what we have")
+    await message.answer("Here's what we have", reply_markup=reply.catalog_kb)
 
 
 @user_router.message(F.text.lower() == 'about')
