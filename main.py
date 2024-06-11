@@ -10,6 +10,9 @@ dp = Dispatcher()
 from handlers.user_privat import user_router
 dp.include_router(user_router)
 
+from handlers.catalog import cat_router
+dp.include_router(cat_router)
+
 from handlers.user_group import group_router
 dp.include_router(group_router)
 

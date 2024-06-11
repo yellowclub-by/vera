@@ -34,6 +34,11 @@ async def addresses(message: types.Message):
     await message.answer('Our addresses')
 
 
+@user_router.message(F.text.lower() == 'back')
+async def back_com(message: types.Message):
+    await message.answer('Main menu', reply_markup=reply.start_kb)
+
+
 # @user_router.message(F.text)
 # @user_router.message(F.photo)
 # @user_router.message(F.text.lower() == 'delivery')
@@ -41,7 +46,6 @@ async def addresses(message: types.Message):
 # @user_router.message(F.text.lower().startswith('how'))
 # @user_router.message(F.text.endswith('?'))
 # @user_router.message(F.text.lower().startswith('how'), F.text.endswith('?'))
-
 # @user_router.message((F.text.lower().contains('cost')) | (F.text.lower().contains('price')))
 # async def echo(message: types.Message):
 #     await message.answer('Magic filter: activated')

@@ -1,5 +1,7 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
+back_btn = KeyboardButton(text='Back')
+
 start_kb = ReplyKeyboardMarkup(
     keyboard=[
         [
@@ -30,9 +32,13 @@ catalog_kb = ReplyKeyboardMarkup(
             KeyboardButton(text='succulent'),
             KeyboardButton(text='ripsalis'),
             KeyboardButton(text='opuntia')
+        ],
+        [
+            back_btn
         ]
     ],
-    resize_keyboard=True
+    resize_keyboard=True,
+    input_field_placeholder='meow'
 )
 
 
