@@ -1,6 +1,6 @@
 from aiogram import types, Router, F
 from aiogram.filters import CommandStart, Command
-from keyboards import reply
+from keyboards import reply, inline
 
 user_router = Router()
 
@@ -31,12 +31,26 @@ async def contacts(message: types.Message):
 @user_router.message(F.text.lower() == 'addresses')
 @user_router.message(Command('addresses'))
 async def addresses(message: types.Message):
-    await message.answer('Our addresses')
+    await message.answer('Our addresses', reply_markup=inline.addresses_kb())
+
+
+@user_router.callback_query(F.data.lower().startswith('addresses'))
+async def addresses_types(callback: types.CallbackQuery):
+    query = callback.data.split('_')[1]
+    if query == '1':
+        await callback.message.answer('address 1 this is')
+    elif query == '2':
+        await callback.message.answer('address 2 this is')
+    else:
+        await callback.message.answer('address 3 this is')
+    await callback.answer()
 
 
 @user_router.message(F.text.lower() == 'back')
 async def back_com(message: types.Message):
     await message.answer('Main menu', reply_markup=reply.start_kb)
+
+
 
 
 # @user_router.message(F.text)
@@ -49,9 +63,3 @@ async def back_com(message: types.Message):
 # @user_router.message((F.text.lower().contains('cost')) | (F.text.lower().contains('price')))
 # async def echo(message: types.Message):
 #     await message.answer('Magic filter: activated')
-
-
-
-
-
-
