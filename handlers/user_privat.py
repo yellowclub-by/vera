@@ -7,7 +7,8 @@ user_router = Router()
 
 @user_router.message(CommandStart())
 async def start(message: types.Message):
-    await message.answer('Hello.', reply_markup=reply.start_kb)
+    await message.answer('<b>Hello.</b> This is telegram bot of <b>cactus.by</b>. How can I help you? ',
+                         reply_markup=reply.start_kb)
 
 
 @user_router.message(F.text.lower() == 'catalog')
@@ -19,13 +20,13 @@ async def catalog(message: types.Message):
 @user_router.message(F.text.lower() == 'about')
 @user_router.message(Command('about'))
 async def about(message: types.Message):
-    await message.answer('What you need to know about us')
+    await message.answer('<strong>What you need to know about us</strong>', reply_markup=inline.links_kb)
 
 
 @user_router.message(F.text.lower() == 'contacts')
 @user_router.message(Command('contacts'))
 async def contacts(message: types.Message):
-    await message.answer('Our contacts')
+    await message.answer('<em>Our contacts</em>')
 
 
 @user_router.message(F.text.lower() == 'addresses')
@@ -49,8 +50,6 @@ async def addresses_types(callback: types.CallbackQuery):
 @user_router.message(F.text.lower() == 'back')
 async def back_com(message: types.Message):
     await message.answer('Main menu', reply_markup=reply.start_kb)
-
-
 
 
 # @user_router.message(F.text)

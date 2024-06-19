@@ -13,4 +13,18 @@ def addresses_kb():
     return builder.as_markup()
 
 
+links_kb = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='website', url='https://cactus.by/'),
+            InlineKeyboardButton(text='Telegram', url='tg://resolve?domain=kaktus_mediakg')
+        ]
+    ]
+)
+
+
+
+
+
+
 
