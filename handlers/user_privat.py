@@ -14,7 +14,7 @@ async def start(message: types.Message):
 @user_router.message(F.text.lower() == 'catalog')
 @user_router.message(Command('catalog'))
 async def catalog(message: types.Message):
-    await message.answer("Here's what we have", reply_markup=reply.catalog_kb)
+    await message.answer("<b>Here's what we have</b>", reply_markup=reply.catalog_kb)
 
 
 @user_router.message(F.text.lower() == 'about')
@@ -26,30 +26,40 @@ async def about(message: types.Message):
 @user_router.message(F.text.lower() == 'contacts')
 @user_router.message(Command('contacts'))
 async def contacts(message: types.Message):
-    await message.answer('<em>Our contacts</em>')
+    await message.answer('<b>Our contacts</b>', reply_markup=inline.contacts_kb())
+
+
+@user_router.callback_query(F.data.lower().startswith('contact'))
+async def contacts_types(callback: types.CallbackQuery):
+    query = callback.data.split('_')[1]
+    if query == '1':
+        await callback.message.answer('cactus.by')
+    else:
+        await callback.message.answer('+357(44)7568345')
+    await callback.answer()
 
 
 @user_router.message(F.text.lower() == 'addresses')
 @user_router.message(Command('addresses'))
 async def addresses(message: types.Message):
-    await message.answer('Our addresses', reply_markup=inline.addresses_kb())
+    await message.answer('<b>Our addresses</b>', reply_markup=inline.addresses_kb())
 
 
 @user_router.callback_query(F.data.lower().startswith('addresses'))
 async def addresses_types(callback: types.CallbackQuery):
     query = callback.data.split('_')[1]
     if query == '1':
-        await callback.message.answer('address 1 this is')
+        await callback.message.answer('Surganova, 2B')
     elif query == '2':
-        await callback.message.answer('address 2 this is')
+        await callback.message.answer('This Street')
     else:
-        await callback.message.answer('address 3 this is')
+        await callback.message.answer('The Other Street')
     await callback.answer()
 
 
 @user_router.message(F.text.lower() == 'back')
 async def back_com(message: types.Message):
-    await message.answer('Main menu', reply_markup=reply.start_kb)
+    await message.answer('<b>Main menu</b>', reply_markup=reply.start_kb)
 
 
 # @user_router.message(F.text)
